@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: citronix
+  datasource:
+    url: jdbc:postgresql://localhost:5432/citronix
+    username: postgres
+    password: toor
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  mvc:
+    servlet:
+      path: /api/v1
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+  paths-to-match: /api/**
