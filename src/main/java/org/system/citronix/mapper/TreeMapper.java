@@ -10,7 +10,7 @@ import org.system.citronix.entity.Tree;
 import java.time.LocalDate;
 
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring" , uses = {HarvestDetailMapper.class})
 public interface TreeMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "field", ignore = true)
@@ -23,5 +23,6 @@ public interface TreeMapper {
     @Mapping(target = "fieldId", source = "tree.field.id")
     @Mapping(target = "age", expression = "java(tree.getAge(dateProvider))")
     @Mapping(target = "productivity", expression = "java(tree.getProductivity(dateProvider))")
+    @Mapping(target = "harvestDetails" , source = "tree.harvestDetails")
     TreeResponse toResponse(Tree tree, LocalDate dateProvider);
 }

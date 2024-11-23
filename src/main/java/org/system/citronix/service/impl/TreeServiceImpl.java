@@ -60,16 +60,6 @@ public class TreeServiceImpl implements TreeService {
 
     @Override
     @Transactional(readOnly = true)
-    public TreeResponse getTreeWithHarvestDetails(Long id) {
-        Tree tree = treeRepository.findByIdWithHarvestDetails(id);
-        if (tree == null) {
-            throw new ResourceNotFoundException("Tree not found with id: " + id);
-        }
-        return treeMapper.toResponse(tree , LocalDate.now());
-    }
-
-    @Override
-    @Transactional(readOnly = true)
     public List<TreeResponse> getAllTrees() {
         return treeRepository.findAll().stream()
                 .map(tree -> treeMapper.toResponse(tree , LocalDate.now()))

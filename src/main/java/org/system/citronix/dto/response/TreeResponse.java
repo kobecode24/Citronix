@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Builder
@@ -17,4 +18,5 @@ public class TreeResponse {
     private Long fieldId;
     private int age;
     private double productivity;
+    private List<HarvestDetailResponse> harvestDetails;
 }
