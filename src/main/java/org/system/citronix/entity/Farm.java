@@ -5,6 +5,7 @@ import lombok.*;
 import static org.system.citronix.constant.CitronixConstants.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -32,14 +33,14 @@ public class Farm {
     private LocalDate creationDate;
 
     @OneToMany(mappedBy = "farm", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Field> fields;
+    private List<Field> fields = new ArrayList<>();
 
-    public boolean canAddField(Double fieldArea) {
+    public double calculateLeftArea() {
         double currentTotalArea = fields.stream()
                 .mapToDouble(Field::getArea)
                 .sum();
 
-        return (currentTotalArea + fieldArea) < this.area;
+        return this.area - currentTotalArea;
     }
 
     public boolean isValidFieldArea(Double fieldArea) {
