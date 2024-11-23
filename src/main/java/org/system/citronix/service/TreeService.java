@@ -10,7 +10,6 @@ public interface TreeService {
     TreeResponse plantTree(TreeRequest request);
     TreeResponse updateTree(Long id, TreeRequest request);
     TreeResponse getTreeById(Long id);
-    TreeResponse getTreeWithHarvestDetails(Long id);
     List<TreeResponse> getAllTrees();
     List<TreeResponse> getTreesByFieldId(Long fieldId);
     void deleteTree(Long id);
