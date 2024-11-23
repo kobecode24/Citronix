@@ -20,9 +20,6 @@ public interface HarvestRepository extends JpaRepository<Harvest, Long> {
     @Query("SELECT h FROM Harvest h LEFT JOIN FETCH h.harvestDetails WHERE h.id = :id")
     Optional<Harvest> findByIdWithDetails(Long id);
 
-    @Query("SELECT h FROM Harvest h LEFT JOIN FETCH h.sales WHERE h.id = :id")
-    Optional<Harvest> findByIdWithSales(Long id);
-
     boolean existsBySeasonAndDate(SeasonEnum season, LocalDate date);
 
     @Query("SELECT SUM(h.totalQuantity) FROM Harvest h WHERE h.date BETWEEN :startDate AND :endDate")

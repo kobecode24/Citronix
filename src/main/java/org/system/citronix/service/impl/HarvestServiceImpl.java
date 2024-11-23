@@ -92,14 +92,6 @@ public class HarvestServiceImpl implements HarvestService {
 
     @Override
     @Transactional(readOnly = true)
-    public HarvestResponse getHarvestWithSales(Long id) {
-        return harvestRepository.findByIdWithSales(id)
-                .map(harvestMapper::toResponseWithDetails)
-                .orElseThrow(() -> new ResourceNotFoundException("Harvest not found with id: " + id));
-    }
-
-    @Override
-    @Transactional(readOnly = true)
     public List<HarvestResponse> getAllHarvests() {
         return harvestRepository.findAll().stream()
                 .map(harvestMapper::toResponse)

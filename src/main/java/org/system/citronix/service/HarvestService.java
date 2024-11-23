@@ -12,7 +12,6 @@ public interface HarvestService {
     HarvestResponse updateHarvest(Long id, HarvestRequest request);
     HarvestResponse getHarvestById(Long id);
     HarvestResponse getHarvestWithDetails(Long id);
-    HarvestResponse getHarvestWithSales(Long id);
     List<HarvestResponse> getAllHarvests();
     List<HarvestResponse> getHarvestsBySeason(SeasonEnum season);
     void deleteHarvest(Long id);
