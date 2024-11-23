@@ -74,6 +74,12 @@ public class ValidationUtil {
         if (harvest.getTotalQuantity() <= 0) {
             throw new BusinessException("Cannot create sale for harvest with no quantity");
         }
+
+        if (harvest.isSold()) {
+            throw new BusinessException(
+                    String.format("Harvest %d has already been sold", harvest.getId())
+            );
+        }
     }
 
     public static void validateDateRange(LocalDate startDate, LocalDate endDate) {

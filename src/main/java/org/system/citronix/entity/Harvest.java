@@ -45,4 +45,8 @@ public class Harvest {
     public boolean isValidSeason(LocalDate date) {
         return season.equals(SeasonEnum.fromDate(date));
     }
+
+    public boolean isSold() {
+        return !sales.isEmpty();
+    }
 }
