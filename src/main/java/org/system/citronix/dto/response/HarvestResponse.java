@@ -19,5 +19,5 @@ public class HarvestResponse {
     private SeasonEnum season;
     private Double totalQuantity;
     private List<HarvestDetailResponse> harvestDetails;
-    private List<SaleResponse> sales;
+    private SaleResponse sales;
 }

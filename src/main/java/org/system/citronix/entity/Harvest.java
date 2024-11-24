@@ -33,8 +33,8 @@ public class Harvest {
     @OneToMany(mappedBy = "harvest", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<HarvestDetail> harvestDetails = new ArrayList<>();
 
-    @OneToMany(mappedBy = "harvest", cascade = CascadeType.ALL)
-    private List<Sale> sales = new ArrayList<>();
+    @OneToOne(mappedBy = "harvest", cascade = CascadeType.ALL)
+    private Sale sales;
 
     public void calculateTotalQuantity() {
         this.totalQuantity = harvestDetails.stream()
@@ -47,6 +47,6 @@ public class Harvest {
     }
 
     public boolean isSold() {
-        return !sales.isEmpty();
+        return sales != null;
     }
 }
