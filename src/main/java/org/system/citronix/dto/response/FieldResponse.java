@@ -15,7 +15,7 @@ public class FieldResponse {
     private Long id;
     private Double area;
     private Long farmId;
-    private List<TreeResponse> trees;
+    private List<TreeInFieldResponse> trees;
     private int maximumTreeCapacity;
     private int availableTreeSpaces;
 }

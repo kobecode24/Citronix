@@ -4,13 +4,14 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.system.citronix.dto.request.TreeRequest;
+import org.system.citronix.dto.response.TreeInFieldResponse;
 import org.system.citronix.dto.response.TreeResponse;
 import org.system.citronix.entity.Tree;
 
 import java.time.LocalDate;
 
 
-@Mapper(componentModel = "spring" , uses = {HarvestDetailMapper.class})
+@Mapper(componentModel = "spring")
 public interface TreeMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "field", ignore = true)
@@ -25,4 +26,13 @@ public interface TreeMapper {
     @Mapping(target = "productivity", expression = "java(tree.getProductivity(dateProvider))")
     @Mapping(target = "harvestDetails" , source = "tree.harvestDetails")
     TreeResponse toResponse(Tree tree, LocalDate dateProvider);
+
+    @Mapping(target = "fieldId", source = "tree.field.id")
+    @Mapping(target = "age", expression = "java(tree.getAge(dateProvider))")
+    @Mapping(target = "productivity", expression = "java(tree.getProductivity(dateProvider))")
+    TreeInFieldResponse toFieldResponse(Tree tree, LocalDate dateProvider);
+
+    default TreeInFieldResponse toFieldResponse(Tree tree) {
+        return toFieldResponse(tree, LocalDate.now());
+    }
 }
