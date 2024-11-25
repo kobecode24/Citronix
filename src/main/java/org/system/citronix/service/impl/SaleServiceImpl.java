@@ -41,6 +41,12 @@ public class SaleServiceImpl implements SaleService {
         // Validate sale date
         ValidationUtil.validateSaleDate(sale, harvest);
 
+        if (harvest.isSold()) {
+            throw new BusinessException(
+                    String.format("Harvest %d has already been sold", harvest.getId())
+            );
+        }
+
 
         // Save and return
         Sale savedSale = saleRepository.save(sale);
@@ -59,6 +65,8 @@ public class SaleServiceImpl implements SaleService {
 
         Harvest harvest = harvestRepository.findById(request.getHarvestId())
                 .orElseThrow(() -> new ResourceNotFoundException("Harvest not found with id: " + request.getHarvestId()));
+
+        ValidationUtil.validateSaleDate(saleMapper.toEntity(request), harvest);
 
         ValidationUtil.validateSaleQuantity(harvest);
 
