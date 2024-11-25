@@ -5,6 +5,7 @@ import lombok.*;
 import static org.system.citronix.constant.CitronixConstants.*;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.Period;
 import java.util.List;
 
@@ -43,15 +44,5 @@ public class Tree {
         if (age > MATURE_TREE_AGE_LIMIT) return OLD_TREE_PRODUCTIVITY;
         if (age >= YOUNG_TREE_AGE_LIMIT) return MATURE_TREE_PRODUCTIVITY;
         return YOUNG_TREE_PRODUCTIVITY;
-    }
-
-    public boolean isValidPlantingDate(LocalDate plantDate) {
-        int month = plantDate.getMonthValue();
-        return month >= PLANTING_START_MONTH &&
-                month <= PLANTING_END_MONTH;
-    }
-
-    public boolean isProductiveAge(LocalDate referenceDate) {
-        return getAge(referenceDate) <= MAX_TREE_AGE;
     }
 }

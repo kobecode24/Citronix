@@ -25,7 +25,7 @@ public class Sale {
     @Column(nullable = false)
     private String customer;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "harvest_id", nullable = false)
     private Harvest harvest;
 

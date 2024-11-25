@@ -42,8 +42,4 @@ public class Farm {
 
         return this.area - currentTotalArea;
     }
-
-    public boolean isValidFieldArea(Double fieldArea) {
-        return fieldArea <= (this.area * MAX_FIELD_PERCENTAGE);
-    }
 }
