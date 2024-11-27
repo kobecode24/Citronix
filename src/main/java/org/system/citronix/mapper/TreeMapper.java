@@ -24,7 +24,6 @@ public interface TreeMapper {
     @Mapping(target = "fieldId", source = "tree.field.id")
     @Mapping(target = "age", expression = "java(tree.getAge(dateProvider))")
     @Mapping(target = "productivity", expression = "java(tree.getProductivity(dateProvider))")
-    @Mapping(target = "harvestDetails" , source = "tree.harvestDetails")
     TreeResponse toResponse(Tree tree, LocalDate dateProvider);
 
     @Mapping(target = "fieldId", source = "tree.field.id")

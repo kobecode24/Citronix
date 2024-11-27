@@ -93,7 +93,7 @@ public class HarvestServiceImpl implements HarvestService {
     @Override
     @Transactional(readOnly = true)
     public List<HarvestResponse> getAllHarvests() {
-        return harvestRepository.findAll().stream()
+        return harvestRepository.findAllWithDetails().stream()
                 .map(harvestMapper::toResponse)
                 .collect(Collectors.toList());
     }

@@ -17,6 +17,14 @@ public interface HarvestRepository extends JpaRepository<Harvest, Long> {
     @Query("SELECT h FROM Harvest h WHERE h.date BETWEEN :startDate AND :endDate")
     List<Harvest> findByDateBetween(LocalDate startDate, LocalDate endDate);
 
+
+    @Query("SELECT DISTINCT h FROM Harvest h " +
+            "LEFT JOIN FETCH h.harvestDetails hd " +
+            "LEFT JOIN FETCH h.sales s " +
+            "WHERE h.id IN (SELECT h2.id FROM Harvest h2)")
+    List<Harvest> findAllWithDetails();
+
+
     @Query("SELECT h FROM Harvest h LEFT JOIN FETCH h.harvestDetails WHERE h.id = :id")
     Optional<Harvest> findByIdWithDetails(Long id);
 

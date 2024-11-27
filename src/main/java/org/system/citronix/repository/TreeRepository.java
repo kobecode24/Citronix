@@ -23,7 +23,7 @@ public interface TreeRepository extends JpaRepository<Tree, Long> {
             nativeQuery = true)
     List<Tree> findTreesOlderThan(@Param("age") int age);
 
-    @Query("SELECT t FROM Tree t LEFT JOIN FETCH t.harvestDetails WHERE t.id = :id")
+    @Query("SELECT t FROM Tree t LEFT JOIN FETCH t.harvestDetails hd LEFT JOIN FETCH hd.harvest WHERE t.id = :id")
     Tree findByIdWithHarvestDetails(Long id);
 
     @Query("SELECT COUNT(t) FROM Tree t WHERE t.field.id = :fieldId AND " +

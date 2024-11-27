@@ -14,6 +14,7 @@ import org.system.citronix.repository.*;
 import org.system.citronix.service.HarvestDetailService;
 import org.system.citronix.util.ValidationUtil;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -168,6 +169,7 @@ public class HarvestDetailServiceImpl implements HarvestDetailService {
                         harvest.getSeason(),
                         harvest.getDate().getYear()
                 ))
+                .filter(tree -> tree.getAge(LocalDate.now())>3)
                 .toList();
 
         if (eligibleTrees.isEmpty()) {
